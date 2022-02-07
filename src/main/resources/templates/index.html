@@ -33,6 +33,23 @@
             <option th:each="word: ${words}" th:value="${word}">
         </datalist>
 
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Слово</th>
+                    <th scope="col">Кол-во</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="word, state: ${wordsMap}">
+                    <th scope="row" th:text="${state.index}"></th>
+                    <td th:text="${word.getKey()}"></td>
+                    <td th:text="${word.getValue()}"></td>
+                </tr>
+            </tbody>
+        </table>
+
         <div class="mb-3">
             <label for="resultArea" class="form-label">Результат запроса:</label>
             <textarea class="form-control" id="resultArea"><div th:text="${result}"></div></textarea>
