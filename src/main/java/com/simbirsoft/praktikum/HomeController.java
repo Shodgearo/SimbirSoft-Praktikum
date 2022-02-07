@@ -1,11 +1,11 @@
 package com.simbirsoft.praktikum;
 
+import com.simbirsoft.praktikum.services.ParseService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -15,17 +15,16 @@ public class HomeController {
 
     @GetMapping
     public String index(Model model) {
-        Document doc = null;
-        try {
-            doc = Jsoup.connect("https://en.wikipedia.org/").get();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return "index";
+    }
 
-        if (doc != null) {
-            System.out.println(doc.body());
-            model.addAttribute("docbody", doc.body());
-        }
+    @PostMapping
+    public String getData(@RequestParam String url, Model model) {
+        ParseService ps = new ParseService(url);
+        Document document = ps.getDoc();
+        System.out.println(ps.getWords());
+        model.addAttribute("words", ps.getWords());
+        model.addAttribute("result", document.body());
 
         return "index";
     }

@@ -8,7 +8,7 @@
     <div class="container">
         <h1>Вас приветсвует программа для практикума Simbirsoft.</h1>
 
-        <form>
+        <form action="#" th:action="@{/}" method="post">
             <div class="row mb-3">
                 <div class="col-6">
                     <label for="url" class="form-label">Введите адрес:</label>
@@ -19,7 +19,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col-9 mb-3">
-                    <input class="form-control" id="url" type="text" placeholder="URL:">
+                    <input class="form-control" id="url" th:name="url" type="text" placeholder="URL:">
                 </div>
                 <div class="col-3 mb-3">
                     <button type="submit" class="btn btn-primary">Отправить</button>
@@ -35,7 +35,7 @@
 
         <div class="mb-3">
             <label for="resultArea" class="form-label">Результат запроса:</label>
-            <textarea class="form-control" id="resultArea"><div th:text="${docbody}"></div></textarea>
+            <textarea class="form-control" id="resultArea"><div th:text="${result}"></div></textarea>
         </div>
     </div>
   </body>
