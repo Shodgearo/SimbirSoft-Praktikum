@@ -22,8 +22,8 @@ public class HomeController {
     public String getData(@RequestParam String url, Model model) {
         ParseService ps = new ParseService(url);
         Document document = ps.getDoc();
-        System.out.println(ps.getWords());
         model.addAttribute("words", ps.getWords());
+        model.addAttribute("wordsMap", ps.getWordsMap());
         model.addAttribute("result", document.body());
 
         return "index";
